@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Api Test Stuff</title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <div>
+        <h2>Info for Greyson!</h2>
+        <div id="divInfo">
+            We probably won't need to call this stuff in the html page ever.  This is just for testing/practice purposes.
+            Also this is only displaying a really small part of the result.  Feel free to bring in more from the "result"
+            or display it differently.  I just wanted you to see that the call worked. 
+            <span style="font-weight:bold; color:red">I have the local host hard coded in the function.  Change it to yours!</span>
+            <br />
+            If you want to see the entire returned dataset you can debug this bitch and set your break point on line 51 
+            of the LeagueApiController and hover over the "json" variable. Click on the little arrow looking things to expand
+            the data.
+
+
+        </div>
+        <br />>
+        <<br />>
+        <h2> Results</h2>
+        <div id="divResults"></div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "http://localhost:58230/api/LeagueApi", //here!
+                type: "GET",
+                dataType: "json",
+                error: function (request, status, error) {
+                    alert("didn't work");
+                },
+                success: function (results) {
+                    ShowSomeData(results);
+                }
+            });
+
+        });
+
+        function ShowSomeData(results) {
+            $("#divResults").append("<div> Type: " + results.MatchType + " Season: " + results.Season + " MatchDuration: " + results.MatchDuration + " MapID: " + results.MapID +" </div>")
+        }
+    </script>
+</body>
+</html>
